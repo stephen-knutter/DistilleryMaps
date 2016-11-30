@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch({type: 'UPDATE_FIELD_AUTH', key: 'email', value}),
   onChangePassword: value =>
     dispatch({type: 'UPDATE_FIELD_AUTH', key: 'password', value}),
-  onSubmit: (email, password) =>{
+  onSubmit: (email, password) => {
     const payload = api.Auth.login(email, password);
     dispatch({type: 'LOGIN', payload});
   },
@@ -69,22 +69,22 @@ class Login extends Component {
                     onChange={this.changePassword}/>
                 </div>
 
+                <div className="form-foot-wrap">
+                  <span>
+                    <Link to="register">
+                      Create an account &rarr;
+                    </Link>
+                  </span>
+
+                  <button
+                    className="btn btn-lg btn-primary pull-xs-right"
+                    type="submit"
+                    disabled={this.props.inProgress}>
+                    Sign In <i className="fa fa-sign-in" aria-hidden="true"></i>
+                  </button>
+                </div>
               </form>
-
-              <div className="form-foot-wrap">
-                <span>
-                  <Link to="register">
-                    Create an account &rarr;
-                  </Link>
-                </span>
-
-                <button
-                  className="btn btn-lg btn-primary pull-xs-right"
-                  type="submit"
-                  disabled={this.props.inProgress}>
-                  Sign In <i className="fa fa-sign-in" aria-hidden="true"></i>
-                </button>
-              </div>
+              
             </div>
           </div>
         </div>

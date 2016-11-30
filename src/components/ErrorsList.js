@@ -7,10 +7,10 @@ class ErrorsList extends Component {
       return(
         <ul className="error-messages">
           {
-            errors.map(key => {
+            Object.keys(errors).map(key => {
               return(
                 <li key={key}>
-                  {key}
+                  {key} {errors[key]}
                 </li>
               )
             })

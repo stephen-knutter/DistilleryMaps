@@ -5,7 +5,7 @@ export default (state = {}, action) => {
       return {
         ...state,
         inProgress: false,
-        errors: action.error ? action.payload.errors : null
+        errors: action.error ? action.payload.error : null
       }
 
     case 'LOGIN_PAGE_UNLOADED':
