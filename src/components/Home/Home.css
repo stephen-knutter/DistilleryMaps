@@ -1,0 +1,17 @@
+.banner.banner-container {
+  text-align: center;
+  background-size: cover;
+  background: url('./liquor-splash.png') 25% 45% no-repeat;
+  padding: 100px 0;
+  position: relative;
+}
+
+.lightbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.3);
+  width: 100%;
+  height: 100%;
+  padding-top: 70px;
+}
