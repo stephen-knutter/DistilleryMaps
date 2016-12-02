@@ -1730,10 +1730,15 @@ a.btn.disabled,
 fieldset[disabled] a.btn {
   pointer-events: none; }
 
+.top-btn {
+  margin-bottom: 15px;}
 .btn-primary {
   color: #fff;
-  background-color: #5CB85C;
-  border-color: #5CB85C; }
+  background-color: #7BB85C;
+  border: 1px solid #3BA501;
+  width: 250px;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.3) inset,0 1px 1px rgba(100,100,100,0.3);}
   .btn-primary:hover {
     color: #fff;
     background-color: #449d44;
@@ -2859,7 +2864,8 @@ input[type="button"].btn-block {
 .navbar-light .navbar-nav .nav-link {
   color: #fff;
   border-radius: 5px;
-  padding: 5px;}
+  padding: 5px;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);}
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
     background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
@@ -4845,7 +4851,8 @@ ul.tag-list {
   height: 26px;
   width: 26px;
   border-radius: 100%;
-  border: 1px solid #fff;
+  border: 1px solid rgba(255, 255, 255, 1);
+  padding: 2px;
   float: left;
   margin-right: 5px; }
 
@@ -4861,7 +4868,12 @@ ul.tag-list {
   .nav-pills.outline-active .nav-link:hover {
     color: #555; }
   .nav-pills.outline-active .nav-link.active {
-    background: #fff !important;
+    /*background: #F3F3F3 !important;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;*/
     border-bottom: 2px solid #5CB85C !important;
     color: #5CB85C !important; }
 
@@ -5067,12 +5079,14 @@ footer {
 .profile-page .user-info {
   text-align: center;
   background: #f3f3f3;
-  padding: 2rem 0 1rem 0; }
+  padding: 2rem 0 1rem 0;
+  border-bottom: 1px solid #ddd;}
   .profile-page .user-info .user-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
-    margin-bottom: 1rem; }
+    width: 128px;
+    height: 128px;
+    border-radius: 100%;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;}
   .profile-page .user-info h4 {
     font-weight: 700; }
   .profile-page .user-info p {
@@ -5082,8 +5096,16 @@ footer {
     font-weight: 300; }
   .profile-page .user-info .action-btn {
     float: right;
-    color: #999;
-    border: 1px solid #999; }
+    color: #fff;
+    width: 145px;
+    background-color: #7BB85C;
+    border: 1px solid #3BA501;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.3) inset,0 1px 1px rgba(100,100,100,0.3);}
+  .profile-page .user-info .action-btn:hover {
+    background-color: rgba(123, 184, 92, .9);
+  }
+
 
 .profile-page .articles-toggle {
   margin: 1.5rem 0 -1px 0; }

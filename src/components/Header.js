@@ -46,7 +46,7 @@ const LoggedInHead = props => {
 
         <li className='nav-item'>
           <Link to={`/${props.currentUser.username}`} className="nav-link">
-            <img src={`/images/small-${props.currentUser.profile_pic}`} className="user-pic" alt={`${props.currentUser.username}`} />
+            <img src={props.currentUser.profile_pic === 'user-placeholder.png' ? `/images/small-${props.currentUser.profile_pic}` : `http://localhost:8000/images/users/${props.currentUser.id}/${props.currentUser.profile_pic}`} className="user-pic" alt={`${props.currentUser.username}`} />
             {props.currentUser.username}
           </Link>
         </li>

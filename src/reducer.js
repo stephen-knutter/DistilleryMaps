@@ -2,9 +2,15 @@ import {combineReducers} from 'redux';
 import main from './reducers/main';
 import home from './reducers/home';
 import authorization from './reducers/authorization';
+import UserProfile from './reducers/user-profile';
+import settings from './reducers/settings';
+import map from './reducers/map';
 
 export default combineReducers({
   main,
   home,
-  authorization
+  authorization,
+  UserProfile,
+  settings,
+  map
 });

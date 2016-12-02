@@ -47,3 +47,29 @@
 .map-link {
   display: inline-block;
 }
+
+.form-control.settings-input {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.setting-image-wrap {
+  position: relative;
+  width: 128px;
+  height: 150px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.current-preview-pic {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 128px;
+  height: 128px;
+  z-index: -1;
+}
+
+canvas {
+  z-index: 2;
+}

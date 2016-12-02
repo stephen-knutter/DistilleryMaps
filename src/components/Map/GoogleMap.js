@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import InfoBubble from './Helpers/infoBubble';
 
-
-  const stores = [
+const stores = [
     {
       id: 1,
       name: 'Leopold Bros',
@@ -50,71 +50,96 @@ import InfoBubble from './Helpers/infoBubble';
     }
   ]
 
+
+const mapStateToProps = state => ({
+  map: state.map,
+  currentUser: state.main.currentUser,
+});
+
 class GoogleMap extends Component {
-  componentDidMount() {
-    function bindMarker(marker, map, infoBubble, html) {
-      console.log('infoBubble: ', infoBubble);
-      window.google.maps.event.addListener(marker, 'click', function(){
-        infoBubble.close();
-        infoBubble.setContent(html);
-        infoBubble.open(map, marker);
-      })
+  constructor() {
+    super();
+
+    this.state = {
+      map: ''
     }
+  }
 
-    const centerLat = this.props.mapOptions.lat;
-    const centerLng = this.props.mapOptions.lng;
-
-    const mapOptions = {
-      center: new window.google.maps.LatLng(centerLat, centerLng),
-      zoomControlOptions: {
-        position: window.google.maps.ControlPosition.LEFT_RIGHT
-      },
-      streetViewControlOptions: {
-        position: window.google.maps.ControlPosition.LEFT_RIGHT
-      },
-      zoom: 10,
-      scrollwheel: false,
-      navigationControl: false,
-      mapTypeControl: false,
-      panControl: false
-    };
-
-    let map = new window.google.maps.Map(document.getElementById("gmap"), mapOptions);
-
-    stores.forEach((store, i) => {
-
-      let infoBubble = new InfoBubble({
-        map: map,
-        backgroundColor: '#ffffff',
-  			borderRadius: 4,
-  			maxWidth: 260,
-  			minWidth: 260,
-  			maxHeight: 100,
-  			minHeight: 100,
-  			arrowSize: 10,
-  			borderWidth: 2,
-  			borderColor: '#7BB85C',
-  			disableAutoPan: true,
-  			arrowPosition: 50,
-  			backgroundClassName: 'phoney',
-  			arrowStyle: 2
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.map.lat && nextProps.map.lng){
+      Object.assign(this.state, {
+        map: nextProps.mapOptions
       });
 
-      let html = `<p class="marker-item">${store.name}</p><p class="marker-item">${store.address}</p><p class="marker-item">${store.website}</p>`;
-      let point = new window.google.maps.LatLng({
-        lat: store.lat,
-        lng: store.lng
-      });
+      if (Object.keys(this.state.map).length > 0) {
+        console.log('state: ', this.state.map);
+          function bindMarker(marker, map, infoBubble, html) {
+            console.log('adding marker: ', infoBubble);
+            window.google.maps.event.addListener(marker, 'click', function(){
+              infoBubble.close();
+              infoBubble.setContent(html);
+              infoBubble.open(map, marker);
+            })
+          }
 
-      let marker = new window.google.maps.Marker({
-        map: map,
-        position: point,
-        icon: './red-marker.png'
-      });
+          console.log('map: ', this.props.map);
+          const centerLat = parseFloat(this.state.map.lat);
+          const centerLng = parseFloat(this.state.map.lng);
+          console.log('lat: ', centerLat, 'lng: ', centerLng);
 
-      bindMarker(marker, map, infoBubble, html);
-    });
+          const mapOptions = {
+            center: new window.google.maps.LatLng(centerLat, centerLng),
+            zoomControlOptions: {
+              position: window.google.maps.ControlPosition.LEFT_RIGHT
+            },
+            streetViewControlOptions: {
+              position: window.google.maps.ControlPosition.LEFT_RIGHT
+            },
+            zoom: 7,
+            scrollwheel: false,
+            navigationControl: false,
+            mapTypeControl: false,
+            panControl: false
+          };
 
+          let map = new window.google.maps.Map(document.getElementById("gmap"), mapOptions);
+
+          stores.forEach((store, i) => {
+            console.log(store);
+            let infoBubble = new InfoBubble({
+              map: map,
+              backgroundColor: '#ffffff',
+              borderRadius: 4,
+              maxWidth: 260,
+              minWidth: 260,
+              maxHeight: 100,
+              minHeight: 100,
+              arrowSize: 10,
+              borderWidth: 2,
+              borderColor: '#7BB85C',
+              disableAutoPan: true,
+              arrowPosition: 50,
+              backgroundClassName: 'phoney',
+              arrowStyle: 2
+            });
+
+            let html = `<p class="marker-item">${store.name}</p><p class="marker-item">${store.address}</p><p class="marker-item">${store.website}</p>`;
+            let point = new window.google.maps.LatLng({
+              lat: store.lat,
+              lng: store.lng
+            });
+
+            let marker = new window.google.maps.Marker({
+              map: map,
+              position: point,
+              icon: '/red-marker.png'
+            });
+
+            bindMarker(marker, map, infoBubble, html);
+          });
+
+      }
+    }
   }
 
   render() {
@@ -124,4 +149,4 @@ class GoogleMap extends Component {
   }
 }
 
-export default GoogleMap;
+export default connect(mapStateToProps, () => ({}))(GoogleMap);

@@ -10,6 +10,8 @@ import Map from './components/Map';
 import Register from './components/Register';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import UserProfile from './components/UserProfile/';
+import Settings from './components/UserProfile/Settings';
 import './index.css';
 
 ReactDOM.render((
@@ -17,10 +19,12 @@ ReactDOM.render((
       <Router history={browserHistory}>
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
-          <Route path="map" component={Map} />
+          <Route path="distilleries/:stateslug" component={Map} />
           <Route path="register" component={Register} />
           <Route path="login" component={Login} />
           <Route path="logout" component={Logout} />
+          <Route path="settings" component={Settings} />
+          <Route path=":userslug" component={UserProfile} />
         </Route>
       </Router>
     </Provider>

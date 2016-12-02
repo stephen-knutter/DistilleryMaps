@@ -19,24 +19,18 @@ const requests = {
   get: uri =>
     superagent.get(`${LOCALHOST}${uri}`).use(tokenHeader).then(res => res.body),
   put: (uri, body) =>
-    superagent.put(`${API_URL}${uri}`, body).use(tokenHeader).then(res => res.body),
+    superagent.put(`${LOCALHOST}${uri}`, body).use(tokenHeader).then(res => res.body),
   post: (uri, body) =>
-    superagent.post(`${LOCALHOST}${uri}`, body).use(tokenHeader).then(res => res.body)
+    superagent.post(`${LOCALHOST}${uri}`, body).use(tokenHeader).then(res => res.body),
+  postfile: (uri, files) =>
+    superagent.post(`${LOCALHOST}${uri}`).use(tokenHeader).send(files).then(res => res.body)
 }
 
 const Distills = {
   getAll: () =>
     requests.get('/distills'),
-  new: (distillery) =>
-    requests.post('/distills/new'),
-  create: (distillery) =>
-    requests.post('/distills/create'),
-  show: (distillery) =>
-    requests.get('/distills'+distillery.id),
-  edit: (distillery) =>
-    requests.put('/distills'+distillery.id+'/edit'),
-  delete: (distillery) =>
-    requests.del('/distills'+distillery.id)
+  getMapByState: (state) =>
+    requests.get(`/distills/${state}`)
 };
 
 const Auth = {
@@ -45,11 +39,21 @@ const Auth = {
   register: (username, email, password) =>
     requests.post('/users/register', {user: {username, email, password}}),
   current: () =>
-    requests.get('/users/user')
+    requests.get('/users/user'),
+  save: (user) =>
+    requests.put('/users/update', user),
+  savePhoto: (files) =>
+    requests.postfile('/users/photo', files)
+};
+
+const UserProfile = {
+  findUserBySlug: (userslug) =>
+    requests.get('/users/profile/'+userslug),
 };
 
 export default {
   Distills,
   Auth,
+  UserProfile,
   setToken: _token => {token = _token;}
-}
+};

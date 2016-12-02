@@ -46,6 +46,11 @@ const localStorageMiddleware = store => next => action => {
   } else if (action.type === 'LOGOUT') {
     window.localStorage.setItem('valid', '');
     api.setToken(null);
+  } else if (action.type === 'SETTING_SAVED' || action.type === 'PHOTO_SAVED') {
+    console.log('token: ', action.payload.token);
+    window.localStorage.removeItem('valid');
+    window.localStorage.setItem('valid', action.payload.token);
+    api.setToken(action.payload.token);
   }
   next(action);
 };
