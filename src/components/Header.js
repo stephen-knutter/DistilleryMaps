@@ -68,7 +68,7 @@ class Header extends Component {
       <nav className="navbar navbar-light">
         <div className="container">
           <Link to="/" className="navbar-brand">
-            <span className="navbar-white">{this.props.appName}</span>
+            <span className="navbar-white"><img src="/distillery-maps-logo.png" className="head-logo" alt="Distillery Maps" /></span>
           </Link>
 
           <LoggedOutHead currentUser={this.props.currentUser} />

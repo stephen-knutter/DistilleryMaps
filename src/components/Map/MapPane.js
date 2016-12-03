@@ -11,7 +11,7 @@ const MapPane = props => {
           locations.map((location) => {
             return(
               <li className="map-link" key={location.id}>
-                <Link to={`/distilleries/${location.slug}`} className="tag-default tag-pill">{location.state}</Link>
+                <Link to={`/distilleries/${location.abbr.toLowerCase()}/${location.slug}`} className="tag-default tag-pill">{location.state}</Link>
               </li>
             )
           })

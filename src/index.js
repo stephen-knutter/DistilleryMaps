@@ -11,6 +11,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import UserProfile from './components/UserProfile/';
+import DistillProfile from './components/DistillProfile/';
 import Settings from './components/UserProfile/Settings';
 import './index.css';
 
@@ -19,7 +20,8 @@ ReactDOM.render((
       <Router history={browserHistory}>
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
-          <Route path="distilleries/:stateslug" component={Map} />
+          <Route path="distilleries/:abbr/:stateslug" component={Map} />
+          <Route path="distilleries/:abbr/:stateslug/:distilleryslug" component={DistillProfile} />
           <Route path="register" component={Register} />
           <Route path="login" component={Login} />
           <Route path="logout" component={Logout} />

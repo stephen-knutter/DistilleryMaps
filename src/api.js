@@ -30,7 +30,11 @@ const Distills = {
   getAll: () =>
     requests.get('/distills'),
   getMapByState: (state) =>
-    requests.get(`/distills/${state}`)
+    requests.get(`/distills/${state}`),
+  getDistillsByState: (stateAbbr) =>
+    requests.get(`/distills/all/${stateAbbr}`),
+  getDistillByDistillId: (distillSlug) =>
+    requests.get(`/distills/distill/${distillSlug}`)
 };
 
 const Auth = {

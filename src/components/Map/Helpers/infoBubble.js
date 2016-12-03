@@ -215,7 +215,7 @@ InfoBubble.prototype.buildDom_ = function() {
   close.style['border'] = 0;
   close.style['zIndex'] = this.baseZIndex_ + 1;
   close.style['cursor'] = 'pointer';
-  close.src = 'http://www.stephenknutter.com/denver_beer/orange-yellow-arrow.png';
+  close.src = 'https://www.budvibes.com/images/green-close-box.png';
 
   var that = this;
   window.google.maps.event.addDomListener(close, 'click', function() {

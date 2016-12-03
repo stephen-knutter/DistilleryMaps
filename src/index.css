@@ -2801,14 +2801,19 @@ input[type="button"].btn-block {
 
 .navbar-brand {
   float: left;
+  margin: 0;
+  padding: 0;
   padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
   margin-right: 1rem;
-  font-size: 1.25rem; }
+font-size: 1.25rem; }
   .navbar-brand:focus, .navbar-brand:hover {
     text-decoration: none; }
   .navbar-brand > img {
-    display: block; }
+    display: block;
+    margin: 0;}
+.navbar-white {
+  padding: 0;
+  margin: 0;}
 
 .navbar-divider {
   float: left;
@@ -5076,10 +5081,14 @@ footer {
       .article-page .card .mod-options i:hover {
         opacity: 1; }
 
+.user-info{position: relative;}
+.profile-head-wrap{position: relative; top: 115px;}
+.user-info.distill-info #gmap {
+  height: 100%;}
 .profile-page .user-info {
   text-align: center;
   background: #f3f3f3;
-  padding: 2rem 0 1rem 0;
+  padding: 0;
   border-bottom: 1px solid #ddd;}
   .profile-page .user-info .user-img {
     width: 128px;
@@ -5105,7 +5114,6 @@ footer {
   .profile-page .user-info .action-btn:hover {
     background-color: rgba(123, 184, 92, .9);
   }
-
 
 .profile-page .articles-toggle {
   margin: 1.5rem 0 -1px 0; }

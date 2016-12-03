@@ -27,7 +27,12 @@ class Map extends Component {
   }
 
   componentWillMount() {
-    this.props.onLoad(api.Distills.getMapByState(this.props.params.stateslug))
+    console.log('stateslug: ', this.props.params.stateslug);
+    console.log('abbr: ', this.props.params.abbr);
+    this.props.onLoad(Promise.all([
+      api.Distills.getMapByState(this.props.params.stateslug),
+      api.Distills.getDistillsByState(this.props.params.abbr)
+    ]));
   }
 
   render() {

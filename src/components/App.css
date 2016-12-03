@@ -73,3 +73,15 @@
 canvas {
   z-index: 2;
 }
+
+.distill-name, .distill-name a {
+  color: #7AB65B;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.head-logo {
+  position: relative;
+  top: -5px
+  
+}
