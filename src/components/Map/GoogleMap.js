@@ -17,7 +17,6 @@ class GoogleMap extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps: ', nextProps);
     if ((nextProps.map.lat && nextProps.map.lng) || (nextProps.mapOptions.map.lat && nextProps.mapOptions.map.lng)) {
       Object.assign(this.state, {
         map: nextProps.mapOptions
@@ -34,7 +33,6 @@ class GoogleMap extends Component {
 
           const centerLat = parseFloat(this.state.map.lat || nextProps.mapOptions.map.lat);
           const centerLng = parseFloat(this.state.map.lng || nextProps.mapOptions.map.lng);
-          console.log('centerLat: ', centerLat);
 
           const mapOptions = {
             center: new window.google.maps.LatLng(centerLat, centerLng),
@@ -54,7 +52,6 @@ class GoogleMap extends Component {
           let map = new window.google.maps.Map(document.getElementById("gmap"), mapOptions);
 
           const stores = this.props.map.distillListings || nextProps.mapOptions.map.distillListings;
-          console.log(stores);
           stores.forEach((store, i) => {
             let infoBubble = new InfoBubble({
               map: map,
@@ -73,7 +70,6 @@ class GoogleMap extends Component {
               arrowStyle: 2
             });
 
-            console.log('map state: ', this.state.map);
             let html =
             `<p class="marker-item distill-name"><a href="/distilleries/${this.state.map.abbr}/${this.state.map.slug}/${store.slug}">${store.name}</a></p>
               <p class="marker-item">

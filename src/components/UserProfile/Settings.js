@@ -29,7 +29,7 @@ class MyEditor extends Component {
     return(
       <AvatarEditor
         ref="editor"
-        image= {this.props.pic}
+        image={this.props.pic}
         width={128}
         height={128}
         border={5}
@@ -99,7 +99,9 @@ class PhotoForm extends Component {
                       `/images/${this.props.currentUser.profile_pic}` :
                       `http://localhost:8000/images/users/${this.props.currentUser.id}/${this.props.currentUser.profile_pic}`
                       }
-                  className="current-preview-pic" id="profile-pic"/>
+                  className="current-preview-pic"
+                  id="profile-pic"
+                  alt={this.props.currentUser.username} />
 
             </div>
 
@@ -229,7 +231,7 @@ class Settings extends Component {
       <div className="profile-page">
         <div className="user-info">
           <div className="container">
-            <div className="row">
+            <div className="row user-row">
               <div className="col-xs-12 col-md-10 offset-md-1">
                 <h2 className="text-xs-center form-head">Current Settings</h2>
 

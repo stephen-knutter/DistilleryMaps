@@ -39,25 +39,35 @@ const Distills = {
 
 const Auth = {
   login: (email, password) =>
-    requests.post('/users/login', {user: {email, password}}),
+    requests.post(`/users/login`, {user: {email, password}}),
   register: (username, email, password) =>
-    requests.post('/users/register', {user: {username, email, password}}),
+    requests.post(`/users/register`, {user: {username, email, password}}),
   current: () =>
-    requests.get('/users/user'),
+    requests.get(`/users/user`),
   save: (user) =>
-    requests.put('/users/update', user),
+    requests.put(`/users/update`, user),
   savePhoto: (files) =>
-    requests.postfile('/users/photo', files)
+    requests.postfile(`/users/photo`, files)
 };
 
 const UserProfile = {
   findUserBySlug: (userslug) =>
-    requests.get('/users/profile/'+userslug),
+    requests.get(`/users/profile/${userslug}`),
 };
+
+const Ratings = {
+  addRating: (ratingInfo) =>
+    requests.post(`/ratings/new`, ratingInfo),
+  getRatingsByDistillSlug: (distillSlug) =>
+    requests.get(`/ratings/distills/${distillSlug}`),
+  getRatingsByUserSlug: (userSlug) =>
+    requests.get(`/ratings/users/${userSlug}`)
+}
 
 export default {
   Distills,
   Auth,
   UserProfile,
+  Ratings,
   setToken: _token => {token = _token;}
 };

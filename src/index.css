@@ -1730,6 +1730,7 @@ a.btn.disabled,
 fieldset[disabled] a.btn {
   pointer-events: none; }
 
+.btn.btn-sm.btn-primary{width: 150px;}
 .top-btn {
   margin-bottom: 15px;}
 .btn-primary {
@@ -4838,6 +4839,10 @@ a.text-danger:focus, a.text-danger:hover {
     color: #aaa !important;
     background: none !important; }
 
+.distill-tag {
+  font-size: 15px;
+}
+
 ul.tag-list {
   padding-left: 0px !important;
   display: inline-block;
@@ -4856,8 +4861,9 @@ ul.tag-list {
   height: 26px;
   width: 26px;
   border-radius: 100%;
+  background-color: #fff;
   border: 1px solid rgba(255, 255, 255, 1);
-  padding: 2px;
+  padding: 1px;
   float: left;
   margin-right: 5px; }
 
@@ -5082,7 +5088,8 @@ footer {
         opacity: 1; }
 
 .user-info{position: relative;}
-.profile-head-wrap{position: relative; top: 115px;}
+.user-row{padding: 2rem 0 1rem 0;}
+.profile-head-wrap{position: relative;height: 180px;}
 .user-info.distill-info #gmap {
   height: 100%;}
 .profile-page .user-info {
@@ -5090,11 +5097,13 @@ footer {
   background: #f3f3f3;
   padding: 0;
   border-bottom: 1px solid #ddd;}
-  .profile-page .user-info .user-img {
+  .profile-page .user-info .user-img, .distill-img {
     width: 128px;
     height: 128px;
     border-radius: 100%;
     margin-bottom: 1rem;
+    padding: 5px;
+    background-color: #fff;
     border: 1px solid #ddd;}
   .profile-page .user-info h4 {
     font-weight: 700; }

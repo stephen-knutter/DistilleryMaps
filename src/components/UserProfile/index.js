@@ -66,7 +66,10 @@ const mapDispatchToProps = dispatch => ({
 
 class UserProfile extends Component {
   componentWillMount() {
-    this.props.onLoad(api.UserProfile.findUserBySlug(this.props.params.userslug));
+    this.props.onLoad(Promise.all([
+      api.UserProfile.findUserBySlug(this.props.params.userslug),
+      api.Ratings.getRatingsByUserSlug(this.props.params.userslug)
+    ]))
   }
 
   componentWillUnmount() {
@@ -102,7 +105,7 @@ class UserProfile extends Component {
       <div className="profile-page">
         <div className="user-info">
           <div className="container">
-            <div className="row">
+            <div className="row user-row">
               <div className="col-xs-12 col-md-10 offset-md-1">
                 <img
                   src={profile.profile_pic === "user-placeholder.png" ? `/images/${profile.profile_pic}` : `http://localhost:8000/images/users/${profile.id}/${profile.profile_pic}`}
