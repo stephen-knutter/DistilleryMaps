@@ -18,7 +18,7 @@ const BigStars = props => {
         <span className={finalRating >= 5 ? 'fa fa-star' : 'fa fa-star-o'}></span>
 
         &nbsp;&nbsp;
-        <span className="rating-number star-info">{finalRating} Stars</span>
+        <span className="rating-number star-info">{finalRating} Star{finalRating === 1 ? '' : 's'}</span>
         <span className="dash star-info"> / </span>
         <span className="rating-votes star-info">{totalVotes} Vote{totalVotes === 1 ? '' : 's'}</span>
       </div>

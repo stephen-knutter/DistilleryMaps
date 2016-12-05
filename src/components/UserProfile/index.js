@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
+import RatingList from './RatingList';
+import BigStars from '../BigStars';
 import api from '../../api';
 
 const EditProfileLink = props => {
@@ -76,26 +78,14 @@ class UserProfile extends Component {
     this.props.onUnload();
   }
 
-  renderTabMenu() {
-    return(
-      <ul className="nav nav-pills outline-active">
-        <li className="nav-item">
-          <Link
-            className="nav-link active"
-            to={`/${this.props.profile.slug}`}>
-            Feed
-          </Link>
-        </li>
-      </ul>
-    )
-  }
-
   render() {
     const profile = this.props.profile;
 
     if (!profile) {
       return null;
     }
+
+    console.log(profile);
 
     const isUser =
       this.props.currentUser &&
@@ -113,6 +103,8 @@ class UserProfile extends Component {
                   className="user-img" />
 
                   <h2>{profile.username}</h2>
+                  <h6>AVERAGE USER RATINGS:</h6>
+                  <BigStars ratings={profile.ratings} />
 
                   <EditProfileLink isUser={isUser} />
               </div>
@@ -122,17 +114,16 @@ class UserProfile extends Component {
 
         <div className="container">
           <div className="row">
-            <div className="col-xs-12 col-md-10 offset-md-1">
-              <div className="feed">
-                <div className="articles-toggle">
-                  {this.renderTabMenu()}
+            <div className="col-xs-3 col-md-3 offset-md-1">
 
-                  <div className="feed-wrap">
-                    <span>Feed here!!</span>
-                  </div>
+              <h6 className="head-label">FAVORITES</h6>
+              <div className="distill-products">
 
-                </div>
-              </div>
+            </div>
+            </div>
+            <div className="col-xs-5 col-md-5">
+              <h6 className="head-label">RATINGS</h6>
+              <RatingList ratings={profile.ratings} />
             </div>
           </div>
         </div>

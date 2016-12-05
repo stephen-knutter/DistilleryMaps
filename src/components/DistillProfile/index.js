@@ -68,20 +68,6 @@ class DistillProfile extends Component {
     this.props.onUnload();
   }
 
-  renderTabMenu() {
-    return(
-      <ul className="nav nav-pills outline-active">
-        <li className="nav-item">
-          <Link
-            className="nav-link active"
-            to={`/${this.props.profile.slug}`}>
-            Feed
-          </Link>
-        </li>
-      </ul>
-    )
-  }
-
   render() {
     const profile = this.props.profile;
 

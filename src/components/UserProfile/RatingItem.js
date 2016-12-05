@@ -34,12 +34,12 @@ const RatingItem = props => {
 
         <h5 className="rating-user">
           <img src={
-              rating.profile_pic === 'user-placeholder.png' ?
-                  '/images/user-placeholder.png' :
-                  `http://localhost:8000/images/users/${rating.user_id}/${rating.profile_pic}`
+              rating.picture === 'distill-placeholder.png' ?
+                  '/images/distill-placeholder.png' :
+                  `http://localhost:8000/images/distilleries/${rating.distill_id}/${rating.picture}`
             }
-            alt={rating.username} />
-            <span className="rating-user-head"><a href={`/${rating.slug}`}>{rating.username}</a></span>
+            alt={rating.name} />
+            <span className="rating-user-head"><a href={`/${rating.slug}`}>{rating.name}</a></span>
         </h5>
         <div className="comment-wrap">
           <Stars rating={rating} />
