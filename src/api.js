@@ -15,7 +15,7 @@ const tokenHeader = req => {
 
 const requests = {
   del: uri =>
-    superagent.del(`${API_URL}${uri}`).use(tokenHeader).then(res => res.body),
+    superagent.del(`${LOCALHOST}${uri}`).use(tokenHeader).then(res => res.body),
   get: uri =>
     superagent.get(`${LOCALHOST}${uri}`).use(tokenHeader).then(res => res.body),
   put: (uri, body) =>
@@ -33,8 +33,14 @@ const Distills = {
     requests.get(`/distills/${state}`),
   getDistillsByState: (stateAbbr) =>
     requests.get(`/distills/all/${stateAbbr}`),
-  getDistillByDistillId: (distillSlug) =>
-    requests.get(`/distills/distill/${distillSlug}`)
+  getDistillByDistillSlug: (distillSlug) =>
+    requests.get(`/distills/distill/${distillSlug}`),
+  getFavoritesByDistillSlug: (distillSlug) =>
+    requests.get(`/distills/distill/following/${distillSlug}`),
+  favorite: (distillID) =>
+    requests.post('/distills/favorite', {distillID: distillID}),
+  unfavorite: (distillID) =>
+    requests.post('/distills/unfavorite', {distillID: distillID})
 };
 
 const Auth = {
@@ -53,6 +59,8 @@ const Auth = {
 const UserProfile = {
   findUserBySlug: (userslug) =>
     requests.get(`/users/profile/${userslug}`),
+  findUserFavoritesBySlug: (userslug) =>
+    requests.get(`/users/favorites/${userslug}`)
 };
 
 const Ratings = {

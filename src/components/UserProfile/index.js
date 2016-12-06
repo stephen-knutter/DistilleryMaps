@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import RatingList from './RatingList';
+import FavoritesList from './FavoritesList';
 import BigStars from '../BigStars';
 import api from '../../api';
 
@@ -17,38 +18,6 @@ const EditProfileLink = props => {
   }
   return null;
 }
-
-const FollowUserBtn = props => {
-  if (props.isUser) {
-    return null;
-  }
-
-  let classes = 'btn btn-sm action-btn';
-  if (props.user.following) {
-    classes += 'btn-secondary';
-  } else {
-    classes += ' btn-outline-secondary';
-  }
-
-  const handleClick = ev => {
-    ev.preventDefault();
-    if (props.user.following) {
-      props.unfollow(props.user.username);
-    } else {
-      props.follow(props.user.username);
-    }
-  };
-
-  return(
-    <button
-      className={classes}
-      onClick={handleClick}>
-      <i className="fa fa-plus" aria-hidden="true"></i>
-      &nbsp;
-      {props.user.following ? 'Unfollow' : 'Follow'} {props.user.username}
-    </button>
-  );
-};
 
 const mapStateToProps = state => ({
   profile: state.UserProfile,
@@ -70,7 +39,8 @@ class UserProfile extends Component {
   componentWillMount() {
     this.props.onLoad(Promise.all([
       api.UserProfile.findUserBySlug(this.props.params.userslug),
-      api.Ratings.getRatingsByUserSlug(this.props.params.userslug)
+      api.Ratings.getRatingsByUserSlug(this.props.params.userslug),
+      api.UserProfile.findUserFavoritesBySlug(this.props.params.userslug)
     ]))
   }
 
@@ -84,8 +54,6 @@ class UserProfile extends Component {
     if (!profile) {
       return null;
     }
-
-    console.log(profile);
 
     const isUser =
       this.props.currentUser &&
@@ -117,9 +85,7 @@ class UserProfile extends Component {
             <div className="col-xs-3 col-md-3 offset-md-1">
 
               <h6 className="head-label">FAVORITES</h6>
-              <div className="distill-products">
-
-            </div>
+              <FavoritesList favorites={profile.favorites} />
             </div>
             <div className="col-xs-5 col-md-5">
               <h6 className="head-label">RATINGS</h6>

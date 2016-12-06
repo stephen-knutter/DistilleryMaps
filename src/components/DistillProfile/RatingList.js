@@ -9,7 +9,7 @@ const RatingList = props => {
         {
           ratings.map((rating) => {
             return(
-              <RatingItem key={rating.id} rating={rating} />
+              <RatingItem key={rating.comment} rating={rating} />
             )
           })
         }

@@ -23,14 +23,23 @@ class RatingInput extends Component {
 
     this.addRating = ev => {
       ev.preventDefault();
-      api.Ratings.addRating(
+      const payload = api.Ratings.addRating(
         {
           userId: this.props.currentUser.id,
           distillId: this.props.distill.id,
           comment: this.state.comment,
           rating: this.state.rating
         }
-      )
+      );
+
+      for (let i = 0; i < this.state.stars.length; i++) {
+        let star = this.state.stars[i];
+        star.setAttribute("class", "fa fa-star-o star");
+      }
+      this.textarea.value = '';
+      let newState = Object.assign(this.state, {comment: '', rating: ''});
+      this.setState(newState);
+      this.props.onSubmit(payload);
     };
 
     this.handleStarIn = ev => {
@@ -91,6 +100,7 @@ class RatingInput extends Component {
             placeholder="Add a comment..."
             value={this.state.body}
             onChange={this.updateComment}
+            ref={(textarea) => {this.textarea = textarea}}
             rows="3">
           </textarea>
         </div>

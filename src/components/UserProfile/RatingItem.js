@@ -39,7 +39,7 @@ const RatingItem = props => {
                   `http://localhost:8000/images/distilleries/${rating.distill_id}/${rating.picture}`
             }
             alt={rating.name} />
-            <span className="rating-user-head"><a href={`/${rating.slug}`}>{rating.name}</a></span>
+            <span className="rating-user-head"><a href={`/distilleries/${rating.state.toLowerCase()}/${rating.state_full.toLowerCase()}/${rating.slug}`}>{rating.name}</a></span>
         </h5>
         <div className="comment-wrap">
           <Stars rating={rating} />

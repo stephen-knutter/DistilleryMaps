@@ -8,34 +8,32 @@ import Products from './Products';
 import BigStars from '../BigStars';
 import api from '../../api';
 
-const FollowUserBtn = props => {
-  if (props.isUser) {
+const FavoriteButton = props => {
+  if (!props.distill) {
     return null;
   }
 
-  let classes = 'btn btn-sm action-btn';
-  if (props.user.following) {
-    classes += 'btn-secondary';
-  } else {
-    classes += ' btn-outline-secondary';
-  }
+  const isFavorite = props.distill.userFollowing;
 
   const handleClick = ev => {
     ev.preventDefault();
-    if (props.user.following) {
-      props.unfollow(props.user.username);
+    if (isFavorite) {
+      props.unfavorite(props.distill.id);
     } else {
-      props.follow(props.user.username);
+      props.favorite(props.distill.id);
     }
   };
 
   return(
     <button
-      className={classes}
+      className="btn btn-sm action-btn pull-right favorite-btn"
       onClick={handleClick}>
-      <i className="fa fa-plus" aria-hidden="true"></i>
+      {isFavorite ?
+        <i className="fa fa-minus-circle" aria-hidden="true"></i> :
+        <i className="fa fa-plus-circle" aria-hidden="true"></i>
+      }
       &nbsp;
-      {props.user.following ? 'Unfollow' : 'Follow'} {props.user.username}
+      {isFavorite ? 'Unfavorite' : 'Favorite'}
     </button>
   );
 };
@@ -46,10 +44,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onFavorite: username =>
-    dispatch({type: 'FAVORITE_DISTILL', payload: api.Profile.follow(username)}),
-  onUnfavorite: username =>
-    dispatch({type: 'UNFAVORITE_DISTILL', payload: api.Profile.unfollow(username)}),
+  onFavorite: distillID =>
+    dispatch({type: 'FAVORITE_DISTILL', payload: api.Distills.favorite(distillID)}),
+  Unfavorite: distillID =>
+    dispatch({type: 'UNFAVORITE_DISTILL', payload: api.Distills.unfavorite(distillID)}),
   onLoad: payload =>
     dispatch({type: 'DISTILL_PAGE_LOADED', payload}),
   onUnload: () =>
@@ -59,8 +57,9 @@ const mapDispatchToProps = dispatch => ({
 class DistillProfile extends Component {
   componentWillMount() {
     this.props.onLoad(Promise.all([
-      api.Distills.getDistillByDistillId(this.props.params.distilleryslug),
-      api.Ratings.getRatingsByDistillSlug(this.props.params.distilleryslug)
+      api.Distills.getDistillByDistillSlug(this.props.params.distilleryslug),
+      api.Ratings.getRatingsByDistillSlug(this.props.params.distilleryslug),
+      api.Distills.getFavoritesByDistillSlug(this.props.params.distilleryslug)
     ]))
   }
 
@@ -74,10 +73,6 @@ class DistillProfile extends Component {
     if (!profile) {
       return null;
     }
-
-    const isUser =
-      this.props.currentUser &&
-      this.props.profile.username === this.props.currentUser.username;
 
     return(
       <div className="profile-page">
@@ -111,8 +106,15 @@ class DistillProfile extends Component {
               className="user-img distill-img pull-left" />
 
               <div className="distill-address-info">
+
+                <FavoriteButton
+                  distill={profile}
+                  favorite={this.props.onFavorite}
+                  unfavorite={this.props.Unfavorite}/>
+
                 <h2 className="distill-head">{profile.name}</h2>
                 <BigStars ratings={profile.ratings} />
+
               </div>
 
           </div>
@@ -123,9 +125,31 @@ class DistillProfile extends Component {
             <div className="col-xs-3 col-md-3">
               <h6 className="head-label">BASIC INFO</h6>
               <div className="distill-address">
-                <p className="distill-label"><i className="fa fa-phone" aria-hidden="true"></i> {profile.phone}</p>
-                <p className="distill-label"><i className="fa fa-globe" aria-hidden="true"></i> <a className="distill-info-link" href={`http://${profile.website}`} target="_blank">{profile.website}</a></p>
-                <p className="distill-label"><i className="fa fa-map-marker" aria-hidden="true"></i> {profile.address}<br/>&nbsp;&nbsp;&nbsp;&nbsp;{profile.region}, {profile.state} {profile.zip}</p>
+                <p className="distill-label">
+                  <i className="fa fa-phone distill-icon"
+                    aria-hidden="true">
+                  </i>
+                  {profile.phone}
+                </p>
+
+                <p className="distill-label">
+                  <i className="fa fa-globe distill-icon"
+                    aria-hidden="true">
+                  </i>
+                  <a className="distill-info-link"
+                    href={`http://${profile.website}`}
+                    target="_blank">{profile.website}
+                  </a>
+                </p>
+
+                <p className="distill-label">
+                  <i className="fa fa-map-marker distill-icon"
+                    aria-hidden="true">
+                  </i>
+                  {profile.address}
+                  <br/>&nbsp;&nbsp;&nbsp;&nbsp;
+                  {profile.region}, {profile.state} {profile.zip}
+                </p>
               </div>
 
               <h6 className="head-label">DISTILLED HERE</h6>
@@ -139,7 +163,6 @@ class DistillProfile extends Component {
               <RatingList ratings={this.props.profile.ratings} />
             </div>
           </div>
-
 
         </div>
 
