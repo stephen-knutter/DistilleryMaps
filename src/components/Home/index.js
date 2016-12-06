@@ -37,12 +37,6 @@ class Home extends Component {
           <h1><i className="fa fa-search" aria-hidden="true"></i> Find a Distillery!</h1>
 
           <MapPane locations={this.props.distillLocations} />
-
-          <div>
-            <Link to="map">
-              Go to map &gt;
-            </Link>
-          </div>
         </div>
 
       </div>

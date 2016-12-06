@@ -2666,7 +2666,9 @@ input[type="button"].btn-block {
 .nav {
   padding-left: 0;
   margin-bottom: 0;
-  list-style: none; }
+  list-style: none;
+  position: relative;
+  top: 2px;}
 
 .nav-link {
   display: inline-block; }

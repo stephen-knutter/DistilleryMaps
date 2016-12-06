@@ -10,9 +10,9 @@ const FavoritesList = props => {
   return(
     <div className="favorites-wrap">
       {
-        favorites.map((favorite) => {
+        favorites.map((favorite, i) => {
           return(
-            <div className="favorite article-meta">
+            <div className="favorite article-meta" key={i}>
               <h5 className="rating-user clearfix">
                 <img className="pull-left" src={`/images/${favorite.picture}`} alt={favorite.name} />
 

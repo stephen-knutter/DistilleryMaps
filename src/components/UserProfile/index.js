@@ -66,7 +66,11 @@ class UserProfile extends Component {
             <div className="row user-row">
               <div className="col-xs-12 col-md-10 offset-md-1">
                 <img
-                  src={profile.profile_pic === "user-placeholder.png" ? `/images/${profile.profile_pic}` : `http://localhost:8000/images/users/${profile.id}/${profile.profile_pic}`}
+                  src={profile.profile_pic && profile.id ?
+                      profile.profile_pic === "user-placeholder.png" ?
+                        `/images/${profile.profile_pic}` :
+                        `http://localhost:8000/images/users/${profile.id}/${profile.profile_pic}`
+                      : ''}
                   alt={profile.username}
                   className="user-img" />
 
