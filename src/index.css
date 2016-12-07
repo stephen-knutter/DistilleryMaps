@@ -2668,7 +2668,7 @@ input[type="button"].btn-block {
   margin-bottom: 0;
   list-style: none;
   position: relative;
-  top: 2px;}
+  top: 4px;}
 
 .nav-link {
   display: inline-block; }
@@ -4866,6 +4866,8 @@ ul.tag-list {
   border: 1px solid rgba(255, 255, 255, 1);
   padding: 1px;
   float: left;
+  position: relative;
+  top: -1px;
   margin-right: 5px; }
 
 .nav-link:hover {

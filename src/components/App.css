@@ -82,7 +82,7 @@ canvas {
 
 .head-logo {
   position: relative;
-  
+
 }
 
 .stars-wrap .fa.fa-star-o, .stars-wrap .fa.fa-star {
@@ -115,6 +115,7 @@ canvas {
   font-size: 17px;
   top: 1px;
   left: 2px;
+  padding-bottom: 1px;
 }
 
 .rating-comment {
@@ -187,6 +188,10 @@ canvas {
 .star-info {
   font-weight: 500;
   font-size: 1.3em;
+}
+
+.favorite {
+  margin-bottom: 10px;
 }
 
 
