@@ -70,10 +70,6 @@
   z-index: -1;
 }
 
-canvas {
-  z-index: 2;
-}
-
 .distill-name, .distill-name a {
   color: #7AB65B;
   font-weight: bold;
@@ -89,6 +85,12 @@ canvas {
   font-size: 1.7em;
   margin: 0 1px;
   color: #ccc;
+  position: relative;
+  top: 2px;
+}
+
+.rating-wrap {
+  margin-bottom: 10px;
 }
 
 .stars-wrap .fa.fa-star {
@@ -208,4 +210,98 @@ canvas {
 
 .distill-icon {
   padding-right: 3px;
+}
+
+.navbar-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  position: relative;
+  top: 5px;
+  right: -5px;
+  padding: .25rem .5rem;
+  border-radius: 3px;
+}
+
+.collapse.navbar-collapse.mobile-navbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10;
+  top: 50px;
+  display: none;
+  background-color: #7BB85C;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #3BA501;
+}
+
+@media screen and (max-width: 900px) {
+  .collapse.navbar-collapse.mobile-navbar.active {
+    display: block;
+  }
+
+  .nav.navbar-nav.pull-xs-right {
+    display: none;
+  }
+
+  .collapse.navbar-collapse.mobile-navbar.active .nav.navbar-nav.pull-xs-right {
+    display: block;
+    width: 100%;
+  }
+
+  .collapse.navbar-collapse.mobile-navbar.active .nav.navbar-nav.pull-xs-right .nav-item {
+    padding: 0;
+    margin: 0;
+    border-radius: none;
+  }
+
+  .collapse.navbar-collapse.mobile-navbar.active .nav.navbar-nav.pull-xs-right .nav-link {
+    border-radius: 0;
+  }
+
+  .navbar.navbar-light {
+    padding: .25rem 0;
+    margin: 0;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+
+  .head-logo {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .collapse.navbar-collapse.mobile-navbar.active .nav.navbar-nav.pull-xs-right .nav-item {
+    padding: 0;
+    margin: 0;
+    border-radius: none;
+    width: 100%;
+    border-bottom: 1px solid #3BA501;
+  }
+
+  .collapse.navbar-collapse.mobile-navbar.active .nav.navbar-nav.pull-xs-right .nav-item:first-child{
+    border-top: 0;
+  }
+
+  .collapse.navbar-collapse.mobile-navbar.active .nav.navbar-nav.pull-xs-right .nav-item:last-child{
+    border-bottom: 0;
+  }
+
+  .logout {
+    float: right;
+  }
+
+  .settings, .home {
+    margin-left: 5px;
+  }
+
+  .settings i, .home i {
+    padding-right: 7px;
+  }
 }
