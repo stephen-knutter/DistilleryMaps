@@ -34,7 +34,11 @@ const LoggedInHead = props => {
       <ul className="nav navbar-nav pull-xs-right">
         <li className='nav-item'>
           <Link to={`/${props.currentUser.slug}`} className="nav-link">
-            <img src={props.currentUser.profile_pic === 'user-placeholder.png' ? `/images/small-${props.currentUser.profile_pic}` : `http://localhost:8000/images/users/${props.currentUser.id}/${props.currentUser.profile_pic}`} className="user-pic" alt={`${props.currentUser.username}`} />
+            <img src={props.currentUser.profile_pic === 'user-placeholder.png' ?
+              `/images/small-${props.currentUser.profile_pic}`
+              : `https://distillery-maps-api.herokuapp.com/images/users/${props.currentUser.id}/${props.currentUser.profile_pic}`}
+              className="user-pic"
+              alt={`${props.currentUser.username}`} />
             {props.currentUser.username}
           </Link>
         </li>

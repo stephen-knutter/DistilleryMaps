@@ -97,7 +97,7 @@ class PhotoForm extends Component {
                   src={
                       this.props.currentUser.profile_pic === 'user-placeholder.png' ?
                       `/images/${this.props.currentUser.profile_pic}` :
-                      `http://localhost:8000/images/users/${this.props.currentUser.id}/${this.props.currentUser.profile_pic}`
+                      `https://distillery-maps-api.herokuapp.com/images/users/${this.props.currentUser.id}/${this.props.currentUser.profile_pic}`
                       }
                   className="current-preview-pic"
                   id="profile-pic"

@@ -36,7 +36,7 @@ const RatingItem = props => {
           <img src={
               rating.profile_pic === 'user-placeholder.png' ?
                   '/images/user-placeholder.png' :
-                  `http://localhost:8000/images/users/${rating.user_id}/${rating.profile_pic}`
+                  `https://distillery-maps-api.herokuapp.com/images/users/${rating.user_id}/${rating.profile_pic}`
             }
             alt={rating.username} />
             <span className="rating-user-head"><a href={`/${rating.slug}`}>{rating.username}</a></span>

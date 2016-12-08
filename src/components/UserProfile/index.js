@@ -69,7 +69,7 @@ class UserProfile extends Component {
                   src={profile.profile_pic && profile.id ?
                       profile.profile_pic === "user-placeholder.png" ?
                         `/images/${profile.profile_pic}` :
-                        `http://localhost:8000/images/users/${profile.id}/${profile.profile_pic}`
+                        `https://distillery-maps-api.herokuapp.com/images/users/${profile.id}/${profile.profile_pic}`
                       : ''}
                   alt={profile.username}
                   className="user-img" />
