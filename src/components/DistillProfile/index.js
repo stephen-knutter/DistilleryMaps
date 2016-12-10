@@ -97,7 +97,7 @@ class DistillProfile extends Component {
         </div>
 
         <div className="container">
-          <div className="distill-info-container">
+          <div className="distill-info-container clearfix">
             <img
               src={profile.picture && profile.id ?
                 profile.picture === "distill-placeholder.png" ?
@@ -122,8 +122,8 @@ class DistillProfile extends Component {
           </div>
         </div>
 
-        <div className="container col-xs-12 col-md-12 rating-container">
-          <div className="row">
+        <div className="container col-xs-12 col-md-12 rating-container clearfix">
+          <div className="row clearfix">
             <div className="col-xs-3 col-md-3">
               <h6 className="head-label">BASIC INFO</h6>
               <div className="distill-address">

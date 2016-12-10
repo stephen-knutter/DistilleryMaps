@@ -13,7 +13,6 @@ import Logout from './components/Logout';
 import UserProfile from './components/UserProfile/';
 import DistillProfile from './components/DistillProfile/';
 import Settings from './components/UserProfile/Settings';
-import './index.css';
 
 ReactDOM.render((
     <Provider store={store}>

@@ -232,7 +232,7 @@ class Settings extends Component {
         <div className="user-info">
           <div className="container">
             <div className="row user-row">
-              <div className="col-xs-12 col-md-10 offset-md-1">
+              <div className="col-xs-12 col-md-12 offset-md-1 clearfix">
                 <h2 className="text-xs-center form-head">Current Settings</h2>
 
                 <ErrorsList errors={this.props.errors} />

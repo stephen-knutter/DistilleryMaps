@@ -64,7 +64,7 @@ class UserProfile extends Component {
         <div className="user-info">
           <div className="container">
             <div className="row user-row">
-              <div className="col-xs-12 col-md-10 offset-md-1">
+              <div className="col-xs-12 col-md-12 clearfix">
                 <img
                   src={profile.profile_pic && profile.id ?
                       profile.profile_pic === "user-placeholder.png" ?

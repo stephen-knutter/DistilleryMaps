@@ -90,7 +90,7 @@ class Register extends Component {
                   </span>
 
                   <button
-                    className="btn btn-lg btn-primary pull-xs-right"
+                    className="btn btn-lg btn-primary pull-right reg-btn"
                     type="submit"
                     disabled={this.props.inProgress}>
                     Register <i className="fa fa-sign-in" aria-hidden="true"></i>

@@ -77,14 +77,14 @@ class Login extends Component {
                   </span>
 
                   <button
-                    className="btn btn-lg btn-primary pull-xs-right"
+                    className="btn btn-lg btn-primary pull-right reg-btn"
                     type="submit"
                     disabled={this.props.inProgress}>
                     Sign In <i className="fa fa-sign-in" aria-hidden="true"></i>
                   </button>
                 </div>
               </form>
-              
+
             </div>
           </div>
         </div>

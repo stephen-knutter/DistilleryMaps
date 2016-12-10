@@ -106,7 +106,7 @@ class RatingInput extends Component {
         </div>
 
         <div className="card-footer clearfix">
-            <div className="stars-wrap pull-xs-left">
+            <div className="stars-wrap pull-left">
               <i className="fa fa-star-o star"
                 data-value="1"
                 aria-hidden="true"
