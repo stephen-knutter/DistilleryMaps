@@ -114,7 +114,7 @@ class PhotoForm extends Component {
 
             <button
               type="submit"
-              className="btn btn-sm btn-outline-secondary action-btn">
+              className="btn btn-sm btn-outline-secondary action-btn save-btn">
               <i className="fa fa-floppy-o" aria-hidden="true"></i> Save
             </button>
           </div>

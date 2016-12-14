@@ -372,6 +372,22 @@ mark,
   text-decoration: none;
 }
 
+@media screen and (max-width: 900px) {
+  .profile-page .user-info .action-btn {
+    float: none;
+    width: 300px;
+    margin: 0 auto;
+    display: block;
+    font-size: 20px;
+    padding: 10px 0;
+  }
+}
+
+.profile-page .user-info .action-btn.save-btn {
+  margin-top: 15px;
+}
+
+
 .col-md-11, .col-md-12 {
   position: relative;
   min-height: 1px;
@@ -677,6 +693,11 @@ mark,
   border-radius: 30px;
 }
 
+.form-wrap {
+  margin: 20px auto;
+  float: none;
+}
+
 /*INITIAL STYLES*/
 .navbar {
   border-radius: 0 !important;
@@ -726,11 +747,6 @@ mark,
 
 .map-link {
   display: inline-block;
-}
-
-.form-control.settings-input {
-  width: 300px;
-  margin: 0 auto;
 }
 
 .setting-image-wrap {
