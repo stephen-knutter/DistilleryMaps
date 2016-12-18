@@ -6,6 +6,7 @@ import RatingInput from './RatingInput';
 import RatingList from './RatingList';
 import Products from './Products';
 import BigStars from '../BigStars';
+import PaginationButtons from '../PaginationButtons';
 import api from '../../api';
 
 const FavoriteButton = props => {
@@ -58,7 +59,7 @@ class DistillProfile extends Component {
   componentWillMount() {
     this.props.onLoad(Promise.all([
       api.Distills.getDistillByDistillSlug(this.props.params.distilleryslug),
-      api.Ratings.getRatingsByDistillSlug(this.props.params.distilleryslug),
+      api.Ratings.getRatingsByDistillSlug(this.props.params.distilleryslug, 0),
       api.Distills.getFavoritesByDistillSlug(this.props.params.distilleryslug)
     ]))
   }
@@ -84,7 +85,8 @@ class DistillProfile extends Component {
                             abbr: this.props.params.abbr,
                             lat: profile.lat,
                             lng: profile.lng,
-                            distillListings: [profile]
+                            distillListings: [profile],
+                            mapType: 'distillPage'
                           }
                         }}
           />
@@ -163,6 +165,12 @@ class DistillProfile extends Component {
               <h6 className="head-label">RATE THIS DISTILLERY</h6>
               <RatingInput currentUser={this.props.currentUser} distill={this.props.profile} />
               <RatingList ratings={this.props.profile.ratings} />
+              <PaginationButtons
+                ratings={profile.ratings}
+                currentPage={profile.currentPage}
+                userSlug={profile.slug}
+                profileType="distill"
+                />
             </div>
           </div>
 

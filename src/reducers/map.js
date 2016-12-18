@@ -3,7 +3,8 @@ export default (state = {}, action) => {
     case 'MAP_PAGE_LOADED':
       return {
         ...action.payload[0].distilleries,
-        distillListings: action.payload[1].listings
+        distillListings: action.payload[1].listings,
+        mapType: 'mapPage'
       };
 
     case 'MAP_PAGE_UNLOADED':

@@ -26,6 +26,8 @@ const requests = {
     superagent.post(`${API_URL}${uri}`).use(tokenHeader).send(files).then(res => res.body)
 }
 
+const limit = (limit, offset) => `limit=${limit}&offset=${offset ? offset * limit : 0}`;
+
 const Distills = {
   getAll: () =>
     requests.get('/distills'),
@@ -66,10 +68,10 @@ const UserProfile = {
 const Ratings = {
   addRating: (ratingInfo) =>
     requests.post(`/ratings/new`, ratingInfo),
-  getRatingsByDistillSlug: (distillSlug) =>
-    requests.get(`/ratings/distills/${distillSlug}`),
-  getRatingsByUserSlug: (userSlug) =>
-    requests.get(`/ratings/users/${userSlug}`)
+  getRatingsByDistillSlug: (distillSlug, offset) =>
+    requests.get(`/ratings/distills/${distillSlug}?${limit(5, offset)}`),
+  getRatingsByUserSlug: (userSlug, offset) =>
+    requests.get(`/ratings/users/${userSlug}?${limit(5, offset)}`)
 }
 
 export default {

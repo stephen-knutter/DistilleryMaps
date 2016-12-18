@@ -4,13 +4,21 @@ export default (state = {}, action) => {
      return {
        ...action.payload[0].distilleryProfile,
        ratings: action.payload[1].ratings,
-       userFollowing: action.payload[2].following
+       userFollowing: action.payload[2].following,
+       currentPage: 0
      };
 
     case 'ADD_RATING':
       state.ratings.unshift(action.payload.rating);
       return {
         ...state
+      }
+
+    case 'SET_PAGE':
+      return {
+        ...state,
+        ratings: action.payload.ratings,
+        currentPage: action.page
       }
 
 

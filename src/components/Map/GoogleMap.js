@@ -34,6 +34,8 @@ class GoogleMap extends Component {
           const centerLat = parseFloat(this.state.map.lat || nextProps.mapOptions.map.lat);
           const centerLng = parseFloat(this.state.map.lng || nextProps.mapOptions.map.lng);
 
+          const mapType = this.props.map.mapType || nextProps.mapOptions.map.mapType;
+
           const mapOptions = {
             center: new window.google.maps.LatLng(centerLat, centerLng),
             zoomControlOptions: {
@@ -42,7 +44,7 @@ class GoogleMap extends Component {
             streetViewControlOptions: {
               position: window.google.maps.ControlPosition.LEFT_RIGHT
             },
-            zoom: 8,
+            zoom: mapType === 'distillPage' ? 15 : 8, //8,
             scrollwheel: false,
             navigationControl: false,
             mapTypeControl: false,

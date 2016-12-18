@@ -4,6 +4,7 @@ import {Link} from 'react-router';
 import RatingList from './RatingList';
 import FavoritesList from './FavoritesList';
 import BigStars from '../BigStars';
+import PaginationButtons from '../PaginationButtons';
 import api from '../../api';
 
 const EditProfileLink = props => {
@@ -39,7 +40,7 @@ class UserProfile extends Component {
   componentWillMount() {
     this.props.onLoad(Promise.all([
       api.UserProfile.findUserBySlug(this.props.params.userslug),
-      api.Ratings.getRatingsByUserSlug(this.props.params.userslug),
+      api.Ratings.getRatingsByUserSlug(this.props.params.userslug, 0),
       api.UserProfile.findUserFavoritesBySlug(this.props.params.userslug)
     ]))
   }
@@ -94,6 +95,11 @@ class UserProfile extends Component {
             <div className="col-xs-5 col-md-5">
               <h6 className="head-label">RATINGS</h6>
               <RatingList ratings={profile.ratings} />
+              <PaginationButtons
+                ratings={profile.ratings}
+                currentPage={profile.currentPage}
+                userSlug={profile.slug}
+                />
             </div>
           </div>
         </div>
