@@ -20,7 +20,7 @@ describe("Distillerymaps home test", function() {
 
     it('uses BDD to test home page', function(client) {
       client
-        .url('https://distillerymaps.com')
+        .url('https://localhost:300')
         .expect.element("body").to.be.present.before(1000);
 
       client
