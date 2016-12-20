@@ -5,13 +5,12 @@ const BigStars = props => {
     let ratings = props.ratings[0];
     let totalVotes = 0;
     let totalOfRatings = 0;
+
     if (ratings) {
       totalVotes = ratings.rating_count ? parseInt(ratings.rating_count) : 0;
       totalOfRatings = ratings.rating_total ? parseInt(ratings.rating_total) : 0;
     }
-    // ratings.map((rating) => {
-    //       totalOfRatings += rating.rating;
-    //     });
+    
     let finalRating = Math.ceil(totalOfRatings / totalVotes) || 0;
     return(
       <div className="stars-wrap">
