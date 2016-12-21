@@ -15,15 +15,15 @@ const tokenHeader = req => {
 
 const requests = {
   del: uri =>
-    superagent.del(`${API_URL}${uri}`).use(tokenHeader).then(res => res.body),
+    superagent.del(`${LOCALHOST}${uri}`).use(tokenHeader).then(res => res.body),
   get: uri =>
-    superagent.get(`${API_URL}${uri}`).use(tokenHeader).then(res => res.body),
+    superagent.get(`${LOCALHOST}${uri}`).use(tokenHeader).then(res => res.body),
   put: (uri, body) =>
-    superagent.put(`${API_URL}${uri}`, body).use(tokenHeader).then(res => res.body),
+    superagent.put(`${LOCALHOST}${uri}`, body).use(tokenHeader).then(res => res.body),
   post: (uri, body) =>
-    superagent.post(`${API_URL}${uri}`, body).use(tokenHeader).then(res => res.body),
+    superagent.post(`${LOCALHOST}${uri}`, body).use(tokenHeader).then(res => res.body),
   postfile: (uri, files) =>
-    superagent.post(`${API_URL}${uri}`).use(tokenHeader).send(files).then(res => res.body)
+    superagent.post(`${LOCALHOST}${uri}`).use(tokenHeader).send(files).then(res => res.body)
 }
 
 const limit = (limit, offset) => `limit=${limit}&offset=${offset ? offset * limit : 0}`;
@@ -54,7 +54,7 @@ const Auth = {
     requests.get(`/users/user`),
   save: (user) =>
     requests.put(`/users/update`, user),
-  savePhoto: (files) =>
+  savePhoto: files =>
     requests.postfile(`/users/photo`, files)
 };
 

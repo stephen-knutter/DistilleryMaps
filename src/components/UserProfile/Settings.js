@@ -4,45 +4,16 @@ import AvatarEditor from 'react-avatar-editor';
 import api from '../../api';
 import ErrorsList from '../ErrorsList';
 
-class MyEditor extends Component {
-  constructor() {
-    super();
-    this.state = {
-      canvas: '',
-      canvasScaled: ''
-    };
 
-    this.updateStatus = () => {
-      const newCanvas = this.refs.editor.getImage();
-      const newCanvasScaled = this.refs.editor.getImageScaledToCanvas();
-
-      const newState = Object.assign({}, this.state, {
-        canvas: newCanvas,
-        canvasScaled: newCanvasScaled
-      });
-
-      this.setState(newState);
-    };
-  }
-
-  render() {
-    return(
-      <AvatarEditor
-        ref="editor"
-        image={this.props.pic}
-        width={128}
-        height={128}
-        border={5}
-        scale={1.1} />
-    )
-  };
- }
 
 class PhotoForm extends Component {
   constructor() {
     super();
     this.state = {
-      pic: ''
+      pic: '',
+      canvas: '',
+      canvasScaled: '',
+      croppingRect: ''
     }
 
     this.changeForm = ev => {
@@ -54,7 +25,7 @@ class PhotoForm extends Component {
       let reader = new FileReader();
       reader.onload = (e) => {
         let image_base64 = e.target.result;
-        this.setState({pic: image_base64})
+        this.setState({pic: image_base64});
       }
       reader.readAsDataURL(file);
     }
@@ -69,8 +40,24 @@ class PhotoForm extends Component {
         }
       }
 
+      this.updateStatus();
+
       this.props.onSubmitPhotoForm(files);
     }
+
+    this.updateStatus = () => {
+      let newCanvas = this.refs.editor.getImage();
+      let newCanvasScaled = this.refs.editor.getImageScaledToCanvas();
+      let newCroppingRect = this.refs.editor.getCroppingRect();
+
+      let newState = Object.assign(this.state, {
+        canvas: newCanvas,
+        canvasScaled: newCanvasScaled,
+        croppingRect: newCroppingRect
+      });
+
+      this.setState(newState);
+    };
   };
 
   componentWillMount() {
@@ -89,9 +76,13 @@ class PhotoForm extends Component {
 
             <div className="setting-image-wrap">
 
-              <MyEditor
-                pic={this.state.pic}
-                currentUser={this.props.currentUser} />
+            <AvatarEditor
+              ref="editor"
+              image={this.state.pic}
+              width={128}
+              height={128}
+              border={5}
+              scale={1.1} />
 
                 <img
                   src={
@@ -219,7 +210,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onSubmitForm: user =>
     dispatch({type: 'SETTINGS_SAVED', payload: api.Auth.save(user)}),
-  onSubmitPhotoForm: files =>
+  onSubmitPhotoForm: (files, cropRect) =>
     dispatch({type: 'PHOTO_SAVED', payload: api.Auth.savePhoto(files)}),
   onUnload: () =>
     dispatch({type: 'SETTINGS_PAGE_UNLOADED'})
