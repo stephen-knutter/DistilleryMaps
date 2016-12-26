@@ -36,7 +36,6 @@ const PaginationButtons = props => {
                 buttons.map(num => {
                   const btnClick = ev => {
                     ev.preventDefault();
-                    console.log('user: ', props.currentUser);
                     setPage(num);
                   }
                   return(
