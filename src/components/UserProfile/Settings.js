@@ -4,8 +4,6 @@ import AvatarEditor from 'react-avatar-editor';
 import api from '../../api';
 import ErrorsList from '../ErrorsList';
 
-
-
 class PhotoForm extends Component {
   constructor() {
     super();
