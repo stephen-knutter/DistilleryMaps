@@ -105,7 +105,7 @@ class DistillProfile extends Component {
                 profile.picture === "distill-placeholder.png" ?
                   `/images/${profile.picture}` :
                   `https://distillery-maps-api.herokuapp.com/images/distilleries/${profile.id}/${profile.picture}`
-                :''}
+                : ''}
               alt={profile.name}
               className="user-img distill-img pull-left" />
 
